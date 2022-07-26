@@ -6,9 +6,11 @@ import { Navbar } from "./components/navbar";
 import { StyledWrapper } from "./components/wrapper";
 import { StyledContainer } from "./components/container";
 import { Connect } from './features/connect-wallet/components/connect';
+import { useWalletChanged } from './hooks/useWalletChanged';
 
 function App() {
   const { hasMetamask } = useProvider();
+  useWalletChanged();
 
   return (
     <div>
