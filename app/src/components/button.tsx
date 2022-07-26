@@ -7,6 +7,7 @@ interface IStyledButtonProps{
     backgroundColor: string;
     borderRadius?:string;
     border?:string;
+    width?:string;
 }
 
 export const StyledButton = styled.button<IStyledButtonProps>`
@@ -15,4 +16,5 @@ export const StyledButton = styled.button<IStyledButtonProps>`
     background-color: ${props=> props.backgroundColor};
     border-radius: ${props => props.borderRadius};
     border: ${props=> props.border};
+    width: ${props=>props.width};
 `

@@ -5,11 +5,12 @@ interface IStyledTextProps {
     color: string;
     fontWeight?: string;
     paddingY?:string
+    paddingX?:string;
 }
 
 export const StyledText = styled.h3<IStyledTextProps>`
  font-size: ${props=> props.fontSize};
  color:  ${props=> props.color};  
- font-weight: ${props=> props.fontWeight}
- padding: ${props=> props.paddingY};
+ font-weight: ${props=> props.fontWeight};
+ padding: ${props=> props.paddingY}  ${props=> props.paddingX};
 `
