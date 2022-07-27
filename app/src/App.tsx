@@ -5,28 +5,21 @@ import { StyledText } from "./components/text";
 import { Navbar } from "./components/navbar";
 import { StyledWrapper } from "./components/wrapper";
 import { StyledContainer } from "./components/container";
-import { Connect } from './features/connect-wallet/components/connect';
-import { useWalletChanged } from './hooks/useWalletChanged';
+import { Connect } from "./features/connect-wallet/components/connect";
+import { useWalletChanged } from "./hooks/useWalletChanged";
 
 function App() {
   const { hasMetamask } = useProvider();
   useWalletChanged();
 
-  return (
-    <div>
-      {hasMetamask ? (
-        <StartApp />
-      ) : (
-        <StyledText fontSize="15" color="red" fontWeight="600">
-          {" "}
-          install wallet
-        </StyledText>
-      )}
-    </div>
-  );
+  return <StartApp hasMetamask={hasMetamask} />;
 }
 
-function StartApp() {
+interface IStartApp {
+  hasMetamask: boolean;
+}
+
+function StartApp({ hasMetamask }: IStartApp) {
   return (
     <StyledWrapper
       paddingT="20px"
@@ -45,12 +38,19 @@ function StartApp() {
           backgroundColor="rgb(32, 32, 54)"
           margin="150px"
           borderRadius="20px"
-         
         >
-          <Connect></Connect>
+          {hasMetamask ? <Connect /> : <InstallWallet />}
         </StyledContainer>
       </div>
     </StyledWrapper>
+  );
+}
+
+function InstallWallet() {
+  return (
+    <StyledText fontSize="15px" fontWeight="600" color="grey">
+      Install Metamask Wallet to Continue using Cosmos!
+    </StyledText>
   );
 }
 
