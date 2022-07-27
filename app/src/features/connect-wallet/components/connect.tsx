@@ -1,9 +1,15 @@
 import { StyledText } from "../../../components/text";
-import { StyledButton } from '../../../components/button';
+import { StyledButton } from "../../../components/button";
 import { StyledContainer } from "../../../components/container";
 import { Dropdown } from "../../../components/dropdown";
+import {
+  useConnectWallet,
+  useWalletConnected,
+} from "../../../hooks/useConnectWallet";
 
 export function Connect() {
+  const { handleConnectWallet } = useConnectWallet();
+  const { connected } = useWalletConnected();
   return (
     <div className="flex">
       <StyledContainer paddingY="100px">
@@ -29,6 +35,7 @@ export function Connect() {
             color="white"
             border="2px solid grey"
             borderRadius="30px"
+            onClick={(e) => handleConnectWallet!()}
           >
             <StyledText fontWeight="500" fontSize="10px" color="white">
               Connect Wallet
@@ -161,19 +168,32 @@ export function Connect() {
         </StyledContainer>
 
         <StyledContainer className="flex justify-center">
-
-        <StyledButton
-        paddingX="30px"
-        paddingY="10px"
-        backgroundColor="rgb(32, 32, 54)"
-        color="white"
-        border="2px solid grey"
-        borderRadius="10px"
-        >
-            Connect Wallet
-        </StyledButton>
+          {connected ? (
+            <StyledButton
+              paddingX="30px"
+              paddingY="10px"
+              backgroundColor="rgb(32, 32, 54)"
+              color="white"
+              border="2px solid grey"
+              borderRadius="10px"
+              onClick={(e) => handleConnectWallet!()}
+            >
+              Swap Tokens
+            </StyledButton>
+          ) : (
+            <StyledButton
+              paddingX="30px"
+              paddingY="10px"
+              backgroundColor="rgb(32, 32, 54)"
+              color="white"
+              border="2px solid grey"
+              borderRadius="10px"
+              onClick={(e) => handleConnectWallet!()}
+            >
+             Connect Wallet
+            </StyledButton>
+          )}
         </StyledContainer>
-
       </StyledContainer>
     </div>
   );

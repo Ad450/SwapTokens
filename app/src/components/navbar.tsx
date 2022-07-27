@@ -9,8 +9,7 @@ const StyledNav = styled.div`
 `;
 
 export function Navbar() {
-  const { account, setAccount, handleConnectWallet, loading } =
-    useConnectWallet();
+  const { account, handleConnectWallet, loading } = useConnectWallet();
 
   return (
     <StyledNav className="items-center">
@@ -26,7 +25,6 @@ export function Navbar() {
           {account}
         </StyledText>
       )}
-     
 
       <StyledButton
         paddingX="30px"
